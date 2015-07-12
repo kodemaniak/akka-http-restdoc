@@ -1,11 +1,11 @@
 = Getting Started
 
-This is the getting started get for the super-awesome user service.
+This is the getting started guide for the super-awesome user service.
 
-A request:
+Get a list of users:
 
-include::restdoc/create-user/request.adoc[]
+include::restdoc/list-users/request.adoc[]
 
-A response:
+And the response:
 
-include::restdoc/create-user/response.adoc[]
+include::restdoc/list-users/response.adoc[]

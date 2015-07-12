@@ -3,7 +3,7 @@ package km.akka.restdoc.example
 import akka.actor.ActorSystem
 import akka.http.Http
 import akka.http.model.headers.RawHeader
-import akka.http.model.{HttpEntity, HttpResponse, StatusCodes}
+import akka.http.model.{MediaTypes, HttpEntity, HttpResponse, StatusCodes}
 import akka.http.server.{Route, Directives}
 import akka.stream.ActorFlowMaterializer
 
@@ -25,7 +25,7 @@ trait Service extends Directives {
     logRequestResult("test") {
       path("users") {
         get {
-          complete(HttpResponse(StatusCodes.OK, immutable.Seq(RawHeader("Header-Name", "Value")), HttpEntity("OK")))
+          complete(HttpResponse(StatusCodes.OK, immutable.Seq(RawHeader("Header-Name", "Value")), HttpEntity(MediaTypes.`application/json`, """[{"name":"User One", "age": 40}]""")))
         } ~
         post {
           complete(HttpResponse(StatusCodes.Created, immutable.Seq(RawHeader("Header-Name", "Value")), HttpEntity("OK")))

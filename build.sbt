@@ -1,4 +1,4 @@
-name := "akka-restZaim2doc"
+name := "akka-restdoc"
 version := "0.0.1-SNAPSHOT"
 scalaVersion := "2.11.6"
 
