@@ -1,18 +1,18 @@
 package km.akka.restdoc.example
 
-import akka.http.model.headers.RawHeader
-import akka.http.model._
-import akka.http.model.StatusCodes._
-import akka.http.server.Route
-import akka.http.testkit.{RouteTest, ScalatestRouteTest}
 import org.apache.commons.io.FileUtils
 import org.scalatest.{Matchers, WordSpec}
 import spray.json._
-import akka.http.marshallers.sprayjson.SprayJsonSupport._
 import DefaultJsonProtocol._
 
 import scala.concurrent.Await
 import java.io.File
+
+import akka.http.scaladsl.model._
+import akka.http.scaladsl.model.headers.RawHeader
+import akka.http.scaladsl.server.Route
+import akka.http.scaladsl.testkit.{RouteTest, ScalatestRouteTest}
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 
 /**
  * Created by carsten on 02.04.15.
@@ -23,7 +23,7 @@ class ServiceTest extends WordSpec with ScalatestRouteTest with AkkaHttpRestdoc 
       perform(Get("/users")
         .withHeaders(RawHeader("Accept", "application/json")))
         .checkAndDocument("list-users") {
-          status should be (OK)
+          status should be (StatusCodes.OK)
         }
     }
     "create a user" in {
@@ -31,7 +31,7 @@ class ServiceTest extends WordSpec with ScalatestRouteTest with AkkaHttpRestdoc 
         perform(Post("/users", json)
           .withHeaders(RawHeader("Accept", "application/json"), RawHeader("Content-Type", "application/json")))
           .checkAndDocument("create-user") {
-            status should be (Created)
+            status should be (StatusCodes.Created)
           }
     }
   }
